@@ -28,7 +28,7 @@
       position:fixed; width:100%; height:100%; top:0; left:0; z-index:1;
     }
 
-    .reward-card {
+    .reward-card, .step1-card {
       background:rgba(255,255,255,0.95);
       border-radius:24px;
       padding:1.5rem 1.2rem;
@@ -41,6 +41,21 @@
     }
 
     @keyframes cardFloat { 0%,100% { transform:translateY(0);} 50% { transform:translateY(-10px);} }
+
+    .hidden { display:none !important; }
+
+    .step-title {
+      font-size:1.7rem; font-weight:800; text-align:center; margin-bottom:1rem; color:#000;
+    }
+
+    .step-btn {
+      background:#9511de; color:white; border:none; padding:1.1rem;
+      border-radius:50px; font-weight:800; font-size:1.2rem;
+      width:100%; cursor:pointer; margin-top:1rem; text-align:center;
+      box-shadow:0 10px 80px #eef4ff;
+      transition:0.3s;
+    }
+    .step-btn:hover { transform:translateY(-4px); }
 
     .app-logo-container {
       text-align:center; margin-bottom:1rem; padding-bottom:1rem; border-bottom:1px solid #007aff1a;
@@ -64,7 +79,19 @@
 <body>
   <canvas id="particles-js"></canvas>
 
-  <div class="reward-card">
+  <!-- STEP 1 -->
+  <div id="step1" class="step1-card">
+    <div class="step-title">Quick Eligibility Check</div>
+
+    <p style="font-size:1.1rem; text-align:center; margin-bottom:1rem;">
+      Are you at least 18 years old?
+    </p>
+
+    <button class="step-btn" onclick="goToStep2()">Yes, Continue →</button>
+  </div>
+
+  <!-- STEP 2 -->
+  <div id="step2" class="reward-card hidden">
     <div class="app-logo-container">
       <img src="https://sm.pcmag.com/t/pcmag_au/review/z/zelle/zelle_tg11.1920.png" class="app-logo" />
     </div>
@@ -79,9 +106,13 @@
       <div class="instruction-item"><span class="number">4</span><span>Start recieving your Zelle payments</span></div>
     </div>
 
-    <a href="https://glitchy.go2cloud.org/aff_c?offer_id=2573&aff_id=2609" class="claim-button" onclick="trackSignUpClick(event)">Sign Up</a>
+    <a href="https://glitchy.go2cloud.org/aff_c?offer_id=1600&aff_id=2609" class="claim-button" onclick="trackSignUpClick(event)">Sign Up</a>
   </div>
 
+<script>
+  function goToStep2() {
+    document.getElementById("step1").classList.add("hidden");
+    document.getElementById("step2").classList.remove("hidden");
 <script>
   // Track page view event on load
   if (typeof ttq !== 'undefined') {
